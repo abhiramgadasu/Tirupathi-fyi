@@ -1,0 +1,31 @@
+.main-container {
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../../assets/1047295dc8b7db3766d3293ba54da01f.png'); /* Replace 'background-image.jpg' with your image path */
+  background-size: cover;
+  background-position: center;
+}
+
+.center-container {
+  text-align: center;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-control {
+  width: 500px; /* Set the width of the input fields */
+  margin-bottom: 10px; /* Adjust as needed for gap */
+}
+
+.btn-primary {
+  width: 500px; /* Set the width of the button */
+  margin-bottom: 10px; /* Adjust as needed for gap */
+}

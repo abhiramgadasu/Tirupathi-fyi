@@ -1,0 +1,133 @@
+<div class="row"*ngIf="showevents">
+    <div class="col-md-6 offset-md-3">
+        <h2>Create Electrician</h2>
+        <form [formGroup]="electricianForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="electricianName">Electrician Name:</label>
+                <input type="text" id="electricianName" formControlName="electricianName" appName class="form-control mb-3" required>
+                <div *ngIf="electricianForm.get('electricianName')?.touched && electricianForm.get('electricianName')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('electricianName')?.errors?.['required']">Electrician Name is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" formControlName="location" class="form-control mb-3" appAddress required>
+                <div *ngIf="electricianForm.get('location')?.touched && electricianForm.get('location')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('location')?.errors?.['required']">Location is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" formControlName="phone" class="form-control mb-3" appPhone required>
+                <div *ngIf="electricianForm.get('phone')?.touched && electricianForm.get('phone')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('phone')?.errors?.['required']">Phone Number is required.</div>
+                    <div *ngIf="electricianForm.get('phone')?.errors?.['pattern']">Invalid phone number format.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="specialization">Specialization:</label>
+                <input type="text" id="specialization" formControlName="specialization" class="form-control mb-3" appName required>
+                <div *ngIf="electricianForm.get('specialization')?.touched && electricianForm.get('specialization')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('specialization')?.errors?.['required']">Specialization is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <input type="number" id="rating" formControlName="rating" class="form-control mb-3" appPincode min="1" max="5">
+                <div *ngIf="electricianForm.get('rating')?.touched && electricianForm.get('rating')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('rating')?.errors?.['min'] || electricianForm.get('rating')?.errors?.['max']">Rating must be between 1 and 5.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="workHours">Work Hours:</label>
+                <input type="text" id="workHours" formControlName="workHours" class="form-control mb-3" appPincode required>
+                <div *ngIf="electricianForm.get('workHours')?.touched && electricianForm.get('workHours')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('workHours')?.errors?.['required']">Work Hours are required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ownership">Ownership (Independent/Company):</label>
+                <select id="ownership" formControlName="ownership" class="form-control mb-3" required>
+                    <option value="" disabled selected>Select ownership</option>
+                    <option value="Independent">Independent</option>
+                    <option value="Company">Company</option>
+                </select>
+                <div *ngIf="electricianForm.get('ownership')?.touched && electricianForm.get('ownership')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('ownership')?.errors?.['required']">Ownership is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="availability">Availability:</label>
+                <select id="availability" formControlName="availability" class="form-control mb-3" required>
+                    <option value="" disabled selected>Select availability</option>
+                    <option value="Available">Available</option>
+                    <option value="Not Available">Not Available</option>
+                </select>
+                <div *ngIf="electricianForm.get('availability')?.touched && electricianForm.get('availability')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('availability')?.errors?.['required']">Availability is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="specialRequests">Special Requests or Comments:</label>
+                <textarea id="specialRequests" formControlName="specialRequests" class="form-control mb-3" appName></textarea>
+                <div *ngIf="electricianForm.get('specialRequests')?.touched && electricianForm.get('specialRequests')?.invalid" class="text-danger">
+                    <div *ngIf="electricianForm.get('specialRequests')?.errors?.['required']">Special Requests or Comments are required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-10">
+                        <button type="button" class="btn btn-secondary btn-block" (click)="onCancel()">Cancel</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="electricianForm.invalid">Create</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<button class="btn btn-sm btn-primary" type="button" (click)="addEvents()">addElectrician</button>
+
+<div class="row w-100">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="companyName"> companyName</th>
+            <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="eventName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="eventName"> eventName </th>
+            <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="language">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="language"> language </th>
+            <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="location"> location </th>
+            <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+                <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+</div>

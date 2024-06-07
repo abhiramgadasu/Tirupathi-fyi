@@ -1,0 +1,221 @@
+<div class="background-image">
+    <div class="row justify-content-center" *ngIf="showevents">
+        <div class="col-md-12">
+            <h2 style="font-size: 1.5rem;"><strong>{{ isEdit ? 'Edit Event' : 'Create Event' }}</strong></h2>
+            <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="event-form">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="eventName">Event Name *</label>
+                            <input type="text" class="form-control" appName formControlName="eventName">
+                            <div *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched"
+                                class="text-danger">
+                                <div *ngIf="eventForm.get('eventName')?.errors?.['required']">Event name is required
+                                </div>
+                                <div *ngIf="eventForm.get('eventName')?.errors?.['minlength']">Event name must be at
+                                    least 3
+                                    characters long</div>
+                                <div *ngIf="eventForm.get('eventName')?.errors?.['maxlength']">Event name cannot exceed
+                                    20
+                                    characters</div>
+                            </div>
+                        </div>
+                        <!-- language -->
+                        <div class="form-group" [ngClass]="{'open': isLanguageDropdownOpen}">
+                            <label for="language">Language *</label>
+                            <select class="form-control custom-select" id="language" name="language"
+                                formControlName="language" (click)="toggleLanguageDropdown()"
+                                (blur)="closeLanguageDropdown()" required>
+                                <option value="English">English</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Telugu">Telugu</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Kannada">Kannada</option>
+                            </select>
+                            <div *ngIf="eventForm.get('language')?.invalid && eventForm.get('language')?.touched"
+                                class="text-danger">
+                                Language is required
+                            </div>
+                        </div>
+                        <!-- Dates -->
+                        <div class="form-group">
+                            <label for="start_date">Start Date *</label>
+                            <input type="date" class="form-control" formControlName="start_date"
+                                onkeydown="return false">
+                            <div *ngIf="eventForm.get('start_date')?.invalid && eventForm.get('start_date')?.touched"
+                                class="text-danger">
+                                <div *ngIf="eventForm.get('start_date')?.errors?.['required']">Start date is required
+                                </div>
+                            </div>
+                        </div>
+                        <!-- email -->
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" class="form-control" id="email" appEmail name="email"
+                                formControlName="email">
+                            <div *ngIf="eventForm.get('email')?.invalid && eventForm.get('email')?.touched"
+                                class="text-danger">
+                                <div *ngIf="eventForm.get('email')?.errors?.['required']">Email is required</div>
+                                <div *ngIf="eventForm.get('email')?.errors?.['email']">Invalid email format</div>
+                            </div>
+                        </div>
+                        <!-- About input -->
+                        <div class="form-group">
+                            <label for="about">About *</label>
+                            <textarea class="form-control" id="about" name="about" appAddress
+                                formControlName="about"></textarea>
+                            <div *ngIf="eventForm.get('about')?.invalid && eventForm.get('about')?.touched"
+                                class="text-danger">
+                                <div *ngIf="eventForm.get('about')?.errors?.['required']">About is required</div>
+                                <div *ngIf="eventForm.get('about')?.errors?.['minlength']">About must be at least 3
+                                    characters
+                                    long</div>
+                                <div *ngIf="eventForm.get('about')?.errors?.['maxlength']">About cannot exceed 1000
+                                    characters
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+
+
+                        <!-- Company name-->
+                        <div class="form-group" [ngClass]="{'open': isLanguageDropdownOpen}">
+                            <label for="companyName">Company Name *</label>
+                            <select class="form-control custom-select" id="companyName" name="companyName"
+                                formControlName="companyName" (click)="toggleLanguageDropdown()"
+                                (blur)="closeLanguageDropdown()">
+                                <option value="">Select Company</option>
+                                <option value="Boston.com">Boston.com</option>
+                                <option value="The Boston Globe">The Boston Globe</option>
+                                <option value="Life Hacker">Life Hacker</option>
+                                <option value="Forbes">Forbes</option>
+                            </select>
+                            <div *ngIf="eventForm.get('companyName')?.invalid && eventForm.get('companyName')?.touched"
+                                class="text-danger">
+                                Company Name is required
+                            </div>
+                        </div>
+                        <!-- Amount for Paid Event -->
+                        <div class="form-group" *ngIf="eventForm.get('isPaid')?.value === 'true'">
+                            <label for="amount">Amount *</label>
+                            <input type="number" class="form-control" id="amount" name="amount" formControlName="amount"
+                                placeholder="Enter amount">
+                            <div *ngIf="eventForm.get('amount')?.invalid && eventForm.get('amount')?.touched"
+                                class="text-danger">
+                                Amount must be a positive number
+                            </div>
+                        </div>
+                        <!-- end date -->
+                        <div class="form-group">
+                            <label for="end_date">End Date *</label>
+                            <input type="date" class="form-control" formControlName="end_date" onkeydown="return false">
+                            <div *ngIf="eventForm.get('end_date')?.invalid && eventForm.get('end_date')?.touched"
+                                class="text-danger">
+                                <div *ngIf="eventForm.get('end_date')?.errors?.['required']">End date is required</div>
+                            </div>
+                        </div>
+
+                        <!-- Event Type selection -->
+                        <div class="form-group" [ngClass]="{'open': isLanguageDropdownOpen}">
+                            <label for="isPaid">Event Type *</label>
+                            <select class="form-control custom-select" id="isPaid" name="isPaid"
+                                formControlName="isPaid" (click)="toggleLanguageDropdown()"
+                                (blur)="closeLanguageDropdown()">
+                                <option value="false">Free Event</option>
+                                <option value="true">Paid Event</option>
+                            </select>
+                            <div *ngIf="eventForm.get('isPaid')?.invalid && eventForm.get('isPaid')?.touched"
+                                class="text-danger">
+                                Event Type is required
+                            </div>
+                        </div>
+                        <!-- Location -->
+                        <div class="form-group">
+                            <label for="location">Location *</label>
+                            <input type="text" class="form-control" appAddress id="location" name="location"
+                                formControlName="location">
+                            <div *ngIf="eventForm.get('location')?.invalid && eventForm.get('location')?.touched"
+                                class="text-danger">
+                                <div *ngIf="eventForm.get('location')?.errors?.['required']">Location is required</div>
+                            </div>
+                        </div>
+                        <!-- FAQs input -->
+                        <div class="form-group">
+                            <label for="faqs">FAQs</label>
+                            <textarea class="form-control" id="faqs" name="faqs" appAddress
+                                formControlName="faqs"></textarea>
+                        </div>
+
+                        <!-- Terms and Conditions input -->
+                        <div class="form-group">
+                            <label for="termsAndConditions">Terms and Conditions *</label>
+                            <textarea class="form-control" id="termsAndConditions" appAddress name="termsAndConditions"
+                                formControlName="termsAndConditions"></textarea>
+                            <div *ngIf="eventForm.get('termsAndConditions')?.invalid && eventForm.get('termsAndConditions')?.touched"
+                                class="text-danger">
+                                Terms and Conditions are required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add/Edit buttons -->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary btn-block" (click)="cancel()">Cancel</button>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <button type="submit" [disabled]="eventForm.invalid" class="btn btn-primary btn-block create">
+                            {{ isEdit ? 'Save' : 'Create' }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-primary" type="button" (click)="addEvents()">addEvents</button>
+
+    <div class="row w-100">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="companyName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="companyName"> companyName</th>
+                <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="eventName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="eventName"> eventName </th>
+                <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="language">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="language"> language </th>
+                <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="location"> location </th>
+                <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+                    <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+    </div>
+</div>

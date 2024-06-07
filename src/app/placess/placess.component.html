@@ -1,0 +1,186 @@
+<div class="row" *ngIf="showevents">
+    <div class="col-md-12">
+        <h2 style="font-size: 1.5rem"><strong>Create Place</strong></h2>
+        <form [formGroup]="placeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="placeName">Place Name *</label>
+                        <input type="text" formControlName="placeName" class="form-control" appName>
+                        <div *ngIf="placeForm.get('placeName')?.invalid && placeForm.get('placeName')?.touched"
+                            class="text-danger">
+                            <div *ngIf="placeForm.get('placeName')?.errors?.['required']">
+                                Place Name is required
+                            </div>
+                            <div *ngIf="placeForm.get('placeName')?.errors?.['minlength']">
+                                Place Name must be at least 3 characters long
+                            </div>
+                            <div *ngIf="placeForm.get('placeName')?.errors?.['maxlength']">
+                                Place Name cannot exceed 50 characters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="placeImage">Image *</label>
+                        <input type="file" id="placeImage" formControlName="placeImage" class="form-control" required>
+                        <div *ngIf="isEditMode && placeForm.get('placeImage')?.value">
+                            <img [src]="placeForm.get('placeImage')?.value" alt="Current Image" width="100">
+                        </div>
+                        <div *ngIf="placeForm.get('placeImage')?.invalid && placeForm.get('placeImage')?.touched"
+                            class="text-danger">
+                            <div *ngIf="placeForm.get('placeImage')?.errors?.['required']">
+                                Image is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="peakSeason">Peak Season *</label>
+                        <input type="text" id="peakSeason" formControlName="peakSeason" class="form-control" appName required
+                            minlength="3" maxlength="50">
+                        <div *ngIf="placeForm.get('peakSeason')?.invalid && placeForm.get('peakSeason')?.touched"
+                            class="text-danger">
+                            <div *ngIf="placeForm.get('peakSeason')?.errors?.['required']">
+                                Peak Season is required
+                            </div>
+                            <div *ngIf="placeForm.get('peakSeason')?.errors?.['minlength']">
+                                Peak Season must be at least 3 characters long
+                            </div>
+                            <div *ngIf="placeForm.get('peakSeason')?.errors?.['maxlength']">
+                                Peak Season cannot exceed 50 characters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="moderateSeason">Moderate Season *</label>
+                        <input type="text" id="moderateSeason" formControlName="moderateSeason" class="form-control" appName
+                            required minlength="3" maxlength="50">
+                        <div *ngIf="placeForm.get('moderateSeason')?.invalid && placeForm.get('moderateSeason')?.touched"
+                            class="text-danger">
+                            <div *ngIf="placeForm.get('moderateSeason')?.errors?.['required']">
+                                Moderate Season is required
+                            </div>
+                            <div *ngIf="placeForm.get('moderateSeason')?.errors?.['minlength']">
+                                Moderate Season must be at least 3 characters long
+                            </div>
+                            <div *ngIf="placeForm.get('moderateSeason')?.errors?.['maxlength']">
+                                Moderate Season cannot exceed 50 characters
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" formControlName="location" class="form-control" appAddress>
+                        <div *ngIf="placeForm.get('location')?.invalid && placeForm.get('location')?.touched"
+                            class="text-danger">
+                            <div *ngIf="placeForm.get('location')?.errors?.['required']">
+                                Location is required
+                            </div>
+                            <div *ngIf="placeForm.get('location')?.errors?.['minlength']">
+                                Location must be at least 3 characters long
+                            </div>
+                            <div *ngIf="placeForm.get('location')?.errors?.['maxlength']">
+                                Location cannot exceed 100 characters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageSlider">Image Slider *</label>
+                        <input type="file" id="imageSlider" formControlName="imageSlider" class="form-control" required>
+                        <div *ngIf="isEditMode && placeForm.get('imageSlider')?.value">
+                            <img [src]="placeForm.get('imageSlider')?.value" alt="Current Image Slider" width="100">
+                        </div>
+                        <div *ngIf="placeForm.get('imageSlider')?.invalid && placeForm.get('imageSlider')?.touched"
+                            class="text-danger">
+                            <div *ngIf="placeForm.get('imageSlider')?.errors?.['required']">
+                                Image Slider is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="offSeason">Off Season *</label>
+                        <input type="text" id="offSeason" formControlName="offSeason" class="form-control" appName required
+                            minlength="3" maxlength="50">
+                        <div *ngIf="placeForm.get('offSeason')?.invalid && placeForm.get('offSeason')?.touched"
+                            class="text-danger">
+                            <div *ngIf="placeForm.get('offSeason')?.errors?.['required']">
+                                Off Season is required
+                            </div>
+                            <div *ngIf="placeForm.get('offSeason')?.errors?.['minlength']">
+                                Off Season must be at least 3 characters long
+                            </div>
+                            <div *ngIf="placeForm.get('offSeason')?.errors?.['maxlength']">
+                                Off Season cannot exceed 50 characters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="about">About</label>
+                        <textarea id="about" formControlName="about" class="form-control" appAddress  style="height: 45px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-secondary btn-block">Cancel</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button type="submit" [disabled]="placeForm.invalid" class="btn btn-primary btn-block create">
+                        create
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<button class="btn btn-sm btn-primary" type="button" (click)="addplace()">ADD PLACE</button>
+
+<div class="row w-100" >
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Place Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="placeName"> placeName</th>
+            <td mat-cell *matCellDef="let element"> {{element.placeName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="location"> location </th>
+            <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Peak Season">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="peakSeason"> peakSeason </th>
+            <td mat-cell *matCellDef="let element"> {{element.peakSeason}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Moderate Season">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="moderateSeason"> moderateSeason </th>
+            <td mat-cell *matCellDef="let element"> {{element.moderateSeason}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Off Season">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="offSeason"> offSeason </th>
+            <td mat-cell *matCellDef="let element"> {{element.offSeason}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+                <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+</div>

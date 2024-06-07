@@ -1,0 +1,156 @@
+<div class="row p-3 w-100">
+    <div class="row d-flex justify-content-center">
+        <h3>Edit details</h3>
+        <mat-icon class="position-absolute top-0 end-0 pe-4" [mat-dialog-close]="true">close</mat-icon>
+    </div>
+    <form [formGroup]="companyForm" (ngSubmit)="Postdata()">
+        <div class="row p-2 overflow-y-auto">
+            <div class="col-6">
+
+                <div class="mb-3">
+                    <label for="companyName" class="form-label">Company Name</label>
+                    <input type="text" class="form-control" id="companyName" formControlName="companyName">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="companyLogo" class="form-label">Company Logo</label>
+                    <input type="file" class="form-control" id="companyLogo" formControlName="companyLogo">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="industry" class="form-label">Industry</label>
+                    <input type="text" class="form-control" id="industry" formControlName="industry">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="companyDescription" class="form-label">Company Description</label>
+                    <textarea class="form-control" id="companyDescription"
+                        formControlName="companyDescription"></textarea>
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="companyWebsite" class="form-label">Company Website</label>
+                    <input type="text" class="form-control" id="companyWebsite" formControlName="companyWebsite">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="companyEmail" class="form-label">Company Email</label>
+                    <input type="email" class="form-control" id="companyEmail" formControlName="companyEmail">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="addressLine1" class="form-label">Address Line 1</label>
+                    <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="addressLine2" class="form-label">Address Line 2</label>
+                    <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" formControlName="city">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="state" class="form-label">State/Province</label>
+                    <input type="text" class="form-control" id="state" formControlName="state">
+                    <!-- Display error messages if needed -->
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="country" formControlName="country">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="postalCode" class="form-label">Postal Code/ZIP</label>
+                    <input type="text" class="form-control" id="postalCode" formControlName="postalCode">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="facebook" class="form-label">Facebook</label>
+                    <input type="text" class="form-control" id="facebook" formControlName="facebook">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="twitter" class="form-label">Twitter</label>
+                    <input type="text" class="form-control" id="twitter" formControlName="twitter">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="linkedIn" class="form-label">LinkedIn</label>
+                    <input type="text" class="form-control" id="linkedIn" formControlName="linkedIn">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="instagram" class="form-label">Instagram</label>
+                    <input type="text" class="form-control" id="instagram" formControlName="instagram">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="otherSocialMedia" class="form-label">Other Social Media</label>
+                    <input type="text" class="form-control" id="otherSocialMedia" formControlName="otherSocialMedia">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="companySize" class="form-label">Company Size</label>
+                    <input type="text" class="form-control" id="companySize" formControlName="companySize">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="year Founded" class="form-label">Year Founded</label>
+                    <input type="text" class="form-control" id="yearFounded" formControlName="yearFounded">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="revenue" class="form-label">Revenue</label>
+                    <input type="text" class="form-control" id="revenue" formControlName="revenue">
+                    <!-- Display error messages if needed -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="keyProductsServices" class="form-label">Key Products/Services</label>
+                    <textarea class="form-control" id="keyProductsServices"
+                        formControlName="keyProductsServices"></textarea>
+                    <!-- Display error messages if needed -->
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="additionalNotes" class="form-label">Additional Notes</label>
+                <textarea class="form-control" id="additionalNotes" formControlName="additionalNotes"></textarea>
+                <!-- Display error messages if needed -->
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>

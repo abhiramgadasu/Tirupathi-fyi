@@ -1,0 +1,34 @@
+<div class="main-container">
+  <div class="center-container">
+    <img src="../../assets/Screenshot_2024-03-12_172830-removebg-preview 5.png" class="img-fluid" alt="Sample image">
+    <div class="container">
+      <form class="login-form" #loginform="ngForm" (ngSubmit)="onSubmit(loginform)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="login['email']" #email="ngModel"
+            required email>
+          <div *ngIf="email && email.invalid && (email.dirty || email.touched)" class="text-danger">
+            <div *ngIf="email.errors?.['required']">
+              Email is required.
+            </div>
+            <div *ngIf="email.errors?.['email']">
+              Invalid email format.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="login['password']"
+            #password="ngModel" required>
+          <div *ngIf="password && password.invalid && (password.dirty || password.touched)" class="text-danger">
+            <div *ngIf="password.errors?.['required']">
+              Password is required.
+            </div>
+          </div>
+        </div>
+        <div class="text-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <button type="submit" class="btn btn-primary" [disabled]="loginform.invalid">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>

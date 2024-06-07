@@ -1,0 +1,356 @@
+<div *ngIf="showevents">
+    <h1 style="font-size: 1.5rem;"><strong>ADD COMPANY</strong></h1>
+ 
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="companyName">Company Name:</label>
+                <input type="text" id="companyName" formControlName="companyName" appName required minlength="2"
+                    maxlength="100">
+                <div *ngIf="companyForm.get('companyName')?.invalid && (companyForm.get('companyName')?.dirty || companyForm.get('companyName')?.touched) "
+                    class="error-message">
+                    <div *ngIf="companyForm.get('companyName')?.errors?.['required']">Company Name is required.</div>
+                    <div *ngIf="companyForm.get('companyName')?.errors?.['minlength']">Company Name must be at least 2
+                        characters
+                        long.</div>
+                    <div *ngIf="companyForm.get('companyName')?.errors?.['maxlength']">Company Name cannot exceed 100
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="companyLogo">Company Logo:</label>
+                <input type="file" id="companyLogo" formControlName="companyLogo">
+                <!-- Error messages for company logo -->
+                <!-- Include error messages here -->
+            </div>
+        </div>
+ 
+        <label for="companyDescription">Company Description:</label>
+        <textarea id="companyDescription" formControlName="companyDescription" appAddress minlength="10"
+            maxlength="500"></textarea>
+        <div *ngIf="companyForm.get('companyDescription')?.invalid && (companyForm.get('companyDescription')?.dirty || companyForm.get('companyDescription')?.touched)"
+            class="error-message">
+            <div *ngIf="companyForm.get('companyDescription')?.errors?.['minlength']">Company Description must be at
+                least
+                10 characters long.</div>
+            <div *ngIf="companyForm.get('companyDescription')?.errors?.['maxlength']">Company Description cannot exceed
+                500
+                characters.</div>
+        </div>
+ 
+        <div class="row">
+            <div class="col-md-6">
+                <label for="industry">Industry:</label>
+                <input type="text" id="industry" formControlName="industry" appAddress minlength="2" maxlength="100">
+                <div *ngIf="companyForm.get('industry')?.invalid && (companyForm.get('industry')?.dirty || companyForm.get('industry')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('industry')?.errors?.['minlength']">Industry must be at least 2
+                        characters
+                        long.
+                    </div>
+                    <div *ngIf="companyForm.get('industry')?.errors?.['maxlength']">Industry cannot exceed 100
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="companyEmail">Company Email:</label>
+                <input type="email" id="companyEmail" formControlName="companyEmail" appEmail required>
+                <div *ngIf="companyForm.get('companyEmail')?.invalid && (companyForm.get('companyEmail')?.dirty || companyForm.get('companyEmail')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('companyEmail')?.errors?.['required']">Company Email is required.</div>
+                    <div *ngIf="companyForm.get('companyEmail')?.errors?.['email']">Invalid email format.</div>
+                </div>
+            </div>
+        </div>
+ 
+        <label for="companyWebsite">Company Website:</label>
+        <input type="text" id="companyWebsite" formControlName="companyWebsite" appEmail minlength="5" maxlength="100">
+        <div *ngIf="companyForm.get('companyWebsite')?.invalid && (companyForm.get('companyWebsite')?.dirty || companyForm.get('companyWebsite')?.touched)"
+            class="error-message">
+            <div *ngIf="companyForm.get('companyWebsite')?.errors?.['minlength']">Company Website must be at least 5
+                characters long.</div>
+            <div *ngIf="companyForm.get('companyWebsite')?.errors?.['maxlength']">Company Website cannot exceed 100
+                characters.</div>
+        </div>
+ 
+ 
+        <div class="row">
+            <div class="col-md-6">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" formControlName="phoneNumber" appPhone required minlength="5" maxlength="15"
+                    class="error-message">
+                <div *ngIf="companyForm.get('phoneNumber')?.invalid && (companyForm.get('phoneNumber')?.dirty || companyForm.get('phoneNumber')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</div>
+                    <div *ngIf="companyForm.get('phoneNumber')?.errors?.['minlength']">Phone Number must be at least 5
+                        characters
+                        long.</div>
+                    <div *ngIf="companyForm.get('phoneNumber')?.errors?.['maxlength']">Phone Number cannot exceed 15
+                        characters.
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="col-md-6">
+                <label for="addressLine1">Address Line 1:</label>
+                <input type="text" id="addressLine1" formControlName="addressLine1" appAddress required minlength="5"
+                    maxlength="100">
+                <div *ngIf="companyForm.get('addressLine1')?.invalid && (companyForm.get('addressLine1')?.dirty || companyForm.get('addressLine1')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('addressLine1')?.errors?.['required']">Address Line 1 is required.</div>
+                    <div *ngIf="companyForm.get('addressLine1')?.errors?.['minlength']">Address Line 1 must be at least
+                        5
+                        characters
+                        long.</div>
+                    <div *ngIf="companyForm.get('addressLine1')?.errors?.['maxlength']">Address Line 1 cannot exceed 100
+                        characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="addressLine2">Address Line 2:</label>
+                <input type="text" id="addressLine2" formControlName="addressLine2" appAddress maxlength="100">
+                <div *ngIf="companyForm.get('addressLine2')?.invalid && (companyForm.get('addressLine2')?.dirty || companyForm.get('addressLine2')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('addressLine2')?.errors?.['maxlength']">Address Line 2 cannot exceed 100
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="city">City:</label>
+                <input type="text" id="city" formControlName="city" required minlength="2" appName maxlength="50">
+                <div *ngIf="companyForm.get('city')?.invalid && (companyForm.get('city')?.dirty || companyForm.get('city')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('city')?.errors?.['required']">City is required.</div>
+                    <div *ngIf="companyForm.get('city')?.errors?.['minlength']">City must be at least 2 characters long.
+                    </div>
+                    <div *ngIf="companyForm.get('city')?.errors?.['maxlength']">City cannot exceed 50 characters.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="state">State/Province:</label>
+                <input type="text" id="state" formControlName="state" required minlength="2" appName maxlength="50">
+                <div *ngIf="companyForm.get('state')?.invalid && (companyForm.get('state')?.dirty || companyForm.get('state')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('state')?.errors?.['required']">State/Province is required.</div>
+                    <div *ngIf="companyForm.get('state')?.errors?.['minlength']">State/Province must be at least 2
+                        characters long.
+                    </div>
+                    <div *ngIf="companyForm.get('state')?.errors?.['maxlength']">State/Province cannot exceed 50
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="country">Country:</label>
+                <input type="text" id="country" formControlName="country" required minlength="2" appName maxlength="50">
+                <div *ngIf="companyForm.get('country')?.invalid && (companyForm.get('country')?.dirty || companyForm.get('country')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('country')?.errors?.['required']">Country is required.</div>
+                    <div *ngIf="companyForm.get('country')?.errors?.['minlength']">Country must be at least 2 characters
+                        long.</div>
+                    <div *ngIf="companyForm.get('country')?.errors?.['maxlength']">Country cannot exceed 50 characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="postalCode">Postal Code/ZIP:</label>
+                <input type="text" id="postalCode" formControlName="postalCode" required minlength="2" appPincode maxlength="20">
+                <div *ngIf="companyForm.get('postalCode')?.invalid && (companyForm.get('postalCode')?.dirty || companyForm.get('postalCode')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('postalCode')?.errors?.['required']">Postal Code/ZIP is required.</div>
+                    <div *ngIf="companyForm.get('postalCode')?.errors?.['minlength']">Postal Code/ZIP must be at least 2
+                        characters
+                        long.</div>
+                    <div *ngIf="companyForm.get('postalCode')?.errors?.['maxlength']">Postal Code/ZIP cannot exceed 20
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="facebook">Facebook:</label>
+                <input type="text" id="facebook" formControlName="facebook" appEmail maxlength="100">
+                <div *ngIf="companyForm.get('facebook')?.invalid && (companyForm.get('facebook')?.dirty || companyForm.get('facebook')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('facebook')?.errors?.['maxlength']">Facebook URL cannot exceed 100
+                        characters.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="twitter">Twitter:</label>
+                <input type="text" id="twitter" formControlName="twitter" appEmail maxlength="100">
+                <div *ngIf="companyForm.get('twitter')?.invalid && (companyForm.get('twitter')?.dirty || companyForm.get('twitter')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('twitter')?.errors?.['maxlength']">Twitter URL cannot exceed 100
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="linkedIn">LinkedIn:</label>
+                <input type="text" id="linkedIn" formControlName="linkedIn" appEmail maxlength="100">
+                <div *ngIf="companyForm.get('linkedIn')?.invalid && (companyForm.get('linkedIn')?.dirty || companyForm.get('linkedIn')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('linkedIn')?.errors?.['maxlength']">LinkedIn URL cannot exceed 100
+                        characters.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="instagram">Instagram:</label>
+                <input type="text" id="instagram" formControlName="instagram" appEmail maxlength="100">
+                <div *ngIf="companyForm.get('instagram')?.invalid && (companyForm.get('instagram')?.dirty || companyForm.get('instagram')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('instagram')?.errors?.['maxlength']">Instagram URL cannot exceed 100
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="otherSocialMedia">Other Social Media:</label>
+                <input type="text" id="otherSocialMedia" formControlName="otherSocialMedia" appEmail maxlength="100">
+                <div *ngIf="companyForm.get('otherSocialMedia')?.invalid && (companyForm.get('otherSocialMedia')?.dirty || companyForm.get('otherSocialMedia')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('otherSocialMedia')?.errors?.['maxlength']">Other Social Media URL
+                        cannot
+                        exceed 100
+                        characters.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="companySize">Company Size:</label>
+                <input type="text" id="companySize" formControlName="companySize" appName maxlength="50">
+                <div *ngIf="companyForm.get('companySize')?.invalid && (companyForm.get('companySize')?.dirty || companyForm.get('companySize')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('companySize')?.errors?.['maxlength']">Company Size cannot exceed 50
+                        characters.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="yearFounded">Year Founded:</label>
+                <input type="text" id="yearFounded" formControlName="yearFounded" appPincode required pattern="[0-9]{4}">
+                <div *ngIf="companyForm.get('yearFounded')?.invalid && (companyForm.get('yearFounded')?.dirty || companyForm.get('yearFounded')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('yearFounded')?.errors?.['required']">Year Founded is required.</div>
+                    <div *ngIf="companyForm.get('yearFounded')?.errors?.['pattern']">Please enter a valid year (e.g.,
+                        YYYY).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="revenue">Revenue:</label>
+                <input type="text" id="revenue" formControlName="revenue" appPhone pattern="[0-9]+">
+                <div *ngIf="companyForm.get('revenue')?.invalid && (companyForm.get('revenue')?.dirty || companyForm.get('revenue')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('revenue')?.errors?.['pattern']">Please enter a valid number for
+                        Revenue.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="keyProductsServices">Key Products/Services:</label>
+                <textarea id="keyProductsServices" formControlName="keyProductsServices" appAddress required minlength="10"
+                    maxlength="500"></textarea>
+                <div *ngIf="companyForm.get('keyProductsServices')?.invalid && (companyForm.get('keyProductsServices')?.dirty || companyForm.get('keyProductsServices')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('keyProductsServices')?.errors?.['required']">Key Products/Services are
+                        required.
+                    </div>
+                    <div *ngIf="companyForm.get('keyProductsServices')?.errors?.['minlength']">Key Products/Services
+                        must be
+                        at
+                        least 10 characters long.</div>
+                    <div *ngIf="companyForm.get('keyProductsServices')?.errors?.['maxlength']">Key Products/Services
+                        cannot
+                        exceed
+                        500 characters.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="additionalNotes">Additional Notes:</label>
+                <textarea id="additionalNotes" formControlName="additionalNotes" appName maxlength="500"></textarea>
+                <div *ngIf="companyForm.get('additionalNotes')?.invalid && (companyForm.get('additionalNotes')?.dirty || companyForm.get('additionalNotes')?.touched)"
+                    class="error-message">
+                    <div *ngIf="companyForm.get('additionalNotes')?.errors?.['maxlength']">Additional Notes cannot
+                        exceed
+                        500
+                        characters.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" [class.disabled]="!companyForm.valid" [class.enabled]="companyForm.valid">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+ 
+<button class="btn btn-sm btn-primary" type="button" (click)="addEvents()">addCompany</button>
+ 
+<div class="row w-100">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+ 
+        <!-- Position Column -->
+        <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="companyName"> companyName</th>
+            <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+        </ng-container>
+ 
+        <!-- Name Column -->
+        <ng-container matColumnDef="phoneNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="phoneNumber"> phoneNumber </th>
+            <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+        </ng-container>
+ 
+        <!-- Weight Column -->
+        <ng-container matColumnDef="industry">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="industry"> industry </th>
+            <td mat-cell *matCellDef="let element"> {{element.industry}} </td>
+        </ng-container>
+ 
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="companySize">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="companySize"> companySize </th>
+            <td mat-cell *matCellDef="let element"> {{element.companySize}} </td>
+        </ng-container>
+        <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="city"> city </th>
+            <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+                <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+            </td>
+        </ng-container>
+ 
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+ 
+ 
+</div>

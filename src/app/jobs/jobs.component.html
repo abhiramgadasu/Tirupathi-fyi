@@ -1,0 +1,216 @@
+<div class="background-image">
+  <div class="row justify-content-center" *ngIf="showevents">
+    <div class="col-md-12">
+      <h2 style="font-size: 1.5rem;"><strong>Create Job</strong></h2>
+      <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="job-posting-form">
+        <div class="row">
+          <div class="col-6">
+            <!-- company name -->
+            <div class="form-group" [ngClass]="{'open': isDropdownOpen}">
+              <label for="companyName">Company name *</label>
+              <select id="companyName" formControlName="companyName" class="form-control custom-select"
+                (click)="toggleDropdown()" (blur)="closeDropdown()" required>
+                <option value="">Select a company</option>
+                <option value="Smartgig">Smartgig</option>
+                <option value="Infionic">Infionic</option>
+                <option value="Insurfin">Insurfin</option>
+                <option value="Caliber">Caliber</option>
+
+              </select>
+              <div *ngIf="jobForm.get('companyName')?.invalid && jobForm.get('companyName')?.touched"
+                class="text-danger">
+                Company name is required
+              </div>
+            </div>
+            <!-- Image -->
+            <div class="form-group">
+              <label for="placeImage">Image *</label>
+              <input type="file" id="placeImage" formControlName="placeImage" class="form-control" required>
+              <div *ngIf="jobForm.get('placeImage')?.invalid && jobForm.get('placeImage')?.touched" class="text-danger">
+                Image is required
+              </div>
+            </div>
+            <!-- Description -->
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" formControlName="description" class="form-control" appAddress></textarea>
+            </div>
+            <!-- role -->
+            <div class="form-group">
+              <label for="role">Role *</label>
+              <input type="text" id="role" formControlName="role" class="form-control" appAddress>
+              <div *ngIf="jobForm.get('role')?.invalid && jobForm.get('role')?.touched" class="text-danger">
+                Role is required and must be between 3 and 50 characters
+              </div>
+            </div>
+            <!-- location -->
+            <div class="form-group">
+              <label for="location">Location *</label>
+              <input type="text" id="location" formControlName="location" class="form-control" appAddress required>
+              <div *ngIf="jobForm.get('location')?.invalid && jobForm.get('location')?.touched" class="text-danger">
+                Location is required and must be between 3 and 50 characters
+              </div>
+            </div>
+            <!-- experience required -->
+            <div class="form-group">
+              <label for="experience">Experience Required *</label>
+              <input type="text" id="experience" formControlName="experience" class="form-control" appAmount required>
+              <div *ngIf="jobForm.get('experience')?.invalid && jobForm.get('experience')?.touched" class="text-danger">
+                Experience is required and must be between 1 and 2 characters
+              </div>
+            </div>
+            <!-- qualification required -->
+            <div class="form-group">
+              <label for="qualification">Qualification Required *</label>
+              <input type="text" id="qualification" formControlName="qualification" class="form-control" appAddress
+                required>
+              <div *ngIf="jobForm.get('qualification')?.invalid && jobForm.get('qualification')?.touched"
+                class="text-danger">
+                Qualification is required and must be between 3 and 50 characters
+              </div>
+            </div>
+            <!-- job type -->
+            <div class="form-check form-check-inline">
+              <label>Job Type *</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="jobType" formControlName="jobType" id="fullTime"
+                  value="Full-Time" required>
+                <label class="form-check-label" for="fullTime">Full-Time</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="jobType" formControlName="jobType" id="partTime"
+                  value="Part-Time">
+                <label class="form-check-label" for="partTime">Part-Time</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <!-- industryType -->
+            <div class="form-group">
+              <label for="industryType">Industry Type</label>
+              <input type="text" id="industryType" formControlName="industryType" class="form-control" appName>
+              <div *ngIf="jobForm.get('industryType')?.invalid && jobForm.get('industryType')?.touched"
+                class="text-danger">
+                Industry type must be between 3 and 50 characters
+              </div>
+            </div>
+            <!-- budget -->
+            <div class="form-group">
+              <label for="budget">Budget</label>
+              <input type="text" id="budget" formControlName="budget" class="form-control" appAmount>
+              <div *ngIf="jobForm.get('budget')?.invalid && jobForm.get('budget')?.touched" class="text-danger">
+                Budget must be a non-negative number
+              </div>
+            </div>
+            <!-- roles and responsibilities -->
+            <div class="form-group">
+              <label for="responsibilities">Roles & Responsibilities *</label>
+              <textarea id="responsibilities" formControlName="responsibilities" class="form-control" appAddress
+                required></textarea>
+              <div *ngIf="jobForm.get('responsibilities')?.invalid && jobForm.get('responsibilities')?.touched"
+                class="text-danger">
+                Responsibilities are required and must be between 10 and 200 characters
+              </div>
+            </div>
+            <!-- hiring Manager -->
+            <div class="form-group">
+              <label for="hiringManager">Hiring Manager</label>
+              <input type="text" id="hiringManager" formControlName="hiringManager" class="form-control" appName>
+              <div *ngIf="jobForm.get('hiringManager')?.invalid && jobForm.get('hiringManager')?.touched"
+                class="text-danger">
+                Hiring manager must be between 3 and 50 characters
+              </div>
+            </div>
+            <!-- openings -->
+            <div class="form-group">
+              <label for="openings">No. of Openings</label>
+              <input type="number" id="openings" formControlName="openings" class="form-control" appAmount>
+              <div *ngIf="jobForm.get('openings')?.invalid && jobForm.get('openings')?.touched" class="text-danger">
+                Openings must be a non-negative number
+              </div>
+            </div>
+            <!-- total employees -->
+            <div class="form-group">
+              <label for="totalEmployees">Total Employees</label>
+              <input type="text1" id="totalEmployees" formControlName="totalEmployees" class="form-control" appAmount>
+              <div *ngIf="jobForm.get('totalEmployees')?.invalid && jobForm.get('totalEmployees')?.touched"
+                class="text-danger">
+                Total employees must be a non-negative number
+              </div>
+            </div>
+            <!-- expiry date -->
+            <div class="form-group">
+              <label for="expireDate">Expire Date *</label>
+              <input type="date" id="expireDate" formControlName="expireDate" class="form-control"
+                onkeydown="return false" required>
+              <div *ngIf="jobForm.get('expireDate')?.invalid && jobForm.get('expireDate')?.touched" class="text-danger">
+                Expire date is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-secondary btn-block">Cancel</button>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+              <button type="submit" [disabled]="jobForm.invalid" class="btn btn-primary btn-block create">
+                create
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<button class="btn btn-sm btn-primary" type="button" (click)="addjob()">ADD JOB</button>
+<div class="row w-100">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="CompanyName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="companyName"> CompanyName</th>
+      <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="role"> Role </th>
+      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="location"> Location </th>
+      <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Qualification">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="qualification"> Qualification </th>
+      <td mat-cell *matCellDef="let element"> {{element.qualification}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Experience">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="experience"> Experience </th>
+      <td mat-cell *matCellDef="let element"> {{element.experience}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Hiring Manager">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="hiringManager"> Hiring Manager </th>
+      <td mat-cell *matCellDef="let element"> {{element.hiringManager}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+        <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+</div>

@@ -1,0 +1,183 @@
+<div class="row" *ngIf="showevents">
+    <div class="col-md-6 offset-md-3">
+        <!-- <div *ngIf="travelForm.invalid && (travelForm.dirty || travelForm.touched)" class="alert alert-danger">
+            <div *ngIf="travelForm.errors && travelForm.errors['required']">Please fill out all required fields.</div>
+        </div> -->
+        <h2>Create Travel </h2>
+        <form [formGroup]="travelForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="travelName">Travel Name:</label>
+                <select id="travelName" formControlName="travelName" class="form-control" required>
+                    <option value="" disabled selected>Select travel name</option>
+                    <option value="Bus">Bus</option>
+                    <option value="Train">Train</option>
+                    <option value="Flight">Flight</option>
+                </select>
+                <div *ngIf="travelForm.get('travelName')?.invalid && (travelForm.get('travelName')?.dirty || travelForm.get('travelName')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('travelName')?.errors?.['required']">Travel Name is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fromLocation">From Location:</label>
+                <input type="text" id="fromLocation" formControlName="fromLocation" class="form-control" appAddress required maxlength="100">
+                <div *ngIf="travelForm.get('fromLocation')?.invalid && (travelForm.get('fromLocation')?.dirty || travelForm.get('fromLocation')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('fromLocation')?.errors?.['required']">From Location is required.</div>
+                    <div *ngIf="travelForm.get('fromLocation')?.errors?.['maxlength']">From Location cannot exceed 100 characters.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="toLocation">To Location:</label>
+                <input type="text" id="toLocation" formControlName="toLocation" class="form-control" appAddress required maxlength="100">
+                <div *ngIf="travelForm.get('toLocation')?.invalid && (travelForm.get('toLocation')?.dirty || travelForm.get('toLocation')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('toLocation')?.errors?.['required']">To Location is required.</div>
+                    <div *ngIf="travelForm.get('toLocation')?.errors?.['maxlength']">To Location cannot exceed 100 characters.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="startTimings">Start Timings:</label>
+                <input type="text" id="startTimings" formControlName="startTimings" class="form-control" appAddress  required>
+                <div *ngIf="travelForm.get('startTimings')?.invalid && (travelForm.get('startTimings')?.dirty || travelForm.get('startTimings')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('startTimings')?.errors?.['required']">Start Timings is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="reachoutTimings">Reachout Timings:</label>
+                <input type="text" id="reachoutTimings" formControlName="reachoutTimings" class="form-control" appAddress required>
+                <div *ngIf="travelForm.get('reachoutTimings')?.invalid && (travelForm.get('reachoutTimings')?.dirty || travelForm.get('reachoutTimings')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('reachoutTimings')?.errors?.['required']">Reachout Timings is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="seatsAvailable">No of Seats Available:</label>
+                <input type="number" id="seatsAvailable" formControlName="seatsAvailable" class="form-control" required>
+                <div *ngIf="travelForm.get('seatsAvailable')?.invalid && (travelForm.get('seatsAvailable')?.dirty || travelForm.get('seatsAvailable')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('seatsAvailable')?.errors?.['required']">No of Seats Available is required.</div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label for="calendar">Calendar:</label>
+                <input type="date" id="calendar" formControlName="calendar" class="form-control" required>
+                <div *ngIf="travelForm.get('calendar')?.invalid && (travelForm.get('calendar')?.dirty || travelForm.get('calendar')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('calendar')?.errors?.['required']">Calendar is required.</div>
+                </div>
+            </div> -->
+            <div class="form-group">
+                <label>Date:</label>
+                <div class="row">
+                    <div class="col">
+                        <select formControlName="day" class="form-control" required>
+                            <option value="" disabled selected>Day</option>
+                            <!-- Add options for days -->
+                            <option *ngFor="let day of days" [value]="day.value">{{ day.label }}</option>
+                        </select>
+                        <div *ngIf="travelForm.get('day')?.invalid && (travelForm.get('day')?.dirty || travelForm.get('day')?.touched)"
+                            class="error-message">
+                            <div *ngIf="travelForm.get('day')?.errors?.['required']">Day is required.</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <select formControlName="month" class="form-control" (change)="updateDays()" required>
+                            <option value="" disabled selected>Month</option>
+                            <!-- Add options for months -->
+                            <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+                        </select>
+                        <div *ngIf="travelForm.get('month')?.invalid && (travelForm.get('month')?.dirty || travelForm.get('month')?.touched)"
+                            class="error-message">
+                            <div *ngIf="travelForm.get('month')?.errors?.['required']">Month is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" formControlName="price" class="form-control" appAmount required>
+                <div *ngIf="travelForm.get('price')?.invalid && (travelForm.get('price')?.dirty || travelForm.get('price')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('price')?.errors?.['required']">Price is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="aboutTraveling">About Traveling:</label>
+                <textarea id="aboutTraveling" formControlName="aboutTraveling" class="form-control" rows="3" appAddress required></textarea>
+                <div *ngIf="travelForm.get('aboutTraveling')?.invalid && (travelForm.get('aboutTraveling')?.dirty || travelForm.get('aboutTraveling')?.touched)"
+                    class="error-message">
+                    <div *ngIf="travelForm.get('aboutTraveling')?.errors?.['required']">About Traveling is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="policyInsurancesName">Policy Insurances Name:</label>
+                <input type="text" id="policyInsurancesName" formControlName="policyInsurancesName" appName class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="policyInsurancesAmount">Policy Insurances Amount:</label>
+                <input type="number" id="policyInsurancesAmount" formControlName="policyInsurancesAmount" appAmount class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="conditions">Conditions:</label>
+                <textarea id="conditions" formControlName="conditions" class="form-control" appAddress rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="button" class="btn" style="background-color: grey;" *ngIf="!travelForm.valid" (click)="onCancel()">Cancel</button>
+                        <button type="submit" class="btn btn-primary" *ngIf="travelForm.valid">Create</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<button class="btn btn-sm btn-primary" type="button" (click)="addEvents()">addTravels</button>
+
+<div class="row w-100">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="companyName"> companyName</th>
+            <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="eventName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="eventName"> eventName </th>
+            <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="language">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="language"> language </th>
+            <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="location"> location </th>
+            <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+                <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+</div>

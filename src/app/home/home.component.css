@@ -1,0 +1,176 @@
+.feed {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.feed .feeds {
+  width: 100%;
+  height: auto;
+}
+.feed-content {
+  margin-left: 10px;
+  /* padding: 15px; */
+}
+.feed-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-top: 1px solid #ddd;
+}
+.feed-actions button {
+  cursor: pointer;
+    margin-right: 10px;
+    background-color: white;
+    border: none;
+
+}
+.comments-section {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+}
+.comment {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.add-comment {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  padding: 10px 15px;
+}
+.add-comment input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+.add-comment button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  /* margin-right: 10px; */
+}
+.add-post-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  background-color: #105ee0;
+  color: white;
+  z-index: 1000;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.feed-image {
+  width: 100%;
+  height: 300px; /* Specify a fixed height */
+  object-fit: cover; /* or object-fit: contain; */
+}
+
+.profile-header .profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.add-post-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.modal-content {
+  width: 400px;
+  padding: 20px;
+}
+
+.comments-section .comment {
+  margin-bottom: 10px;
+}
+
+.comments-section .add-comment {
+  display: flex;
+  align-items: center;
+}
+
+.comments-section .add-comment input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+ .time {
+  font-size: 0.8em;
+  color: gray;
+  margin-top: 10px;
+}
+
+.comments{
+  cursor: pointer;
+  margin-right: 10px;
+  background-color: white;
+  border: none;
+  font-size: 0.8em;
+  color: gray;
+  margin-top: 10px;
+
+}

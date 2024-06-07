@@ -1,0 +1,92 @@
+/* Style for company form */
+.company-form {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .company-form form {
+    width: 100%;
+  }
+  
+  /* Style for form group */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Style for labels */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for text inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="file"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for buttons */
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.disabled {
+    background-color: #ccc; /* Or any other color for a disabled look */
+    color: #666; /* Or any other color for a disabled look */
+    cursor: not-allowed; /* Change cursor to not-allowed when disabled */
+  }
+  
+  
+  /* Style for error messages */
+  .error-message {
+    color: red !important;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Style for success message */
+  .success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Style for image preview */
+  .image-preview {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .image-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+  }
+  
+  /* Style for company size input */
+
+  
+  /* Style for social media inputs */
+  .social-media-input {
+    width: calc(100% - 60px); /* Adjust based on your design */
+  }
+  
+  /* Style for country input */
+
+  
+
+  /* Add more specific styles as needed */
+  

@@ -1,0 +1,50 @@
+.job-posting-form {
+    margin-top: 50px;
+}
+.form-group {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group label {
+    font-weight: bold;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.form-group textarea {
+    height: 100px;
+}
+.create {
+    margin-left: auto;
+}
+.check-boxin{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px; 
+}
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../assets/up-arrow.png');
+    background-position: right 10px center;
+    background-size: 12px;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+}
+
+.col-md-6.open .custom-select {
+    background-image: url('../../assets/down-arrow.png');
+}
+

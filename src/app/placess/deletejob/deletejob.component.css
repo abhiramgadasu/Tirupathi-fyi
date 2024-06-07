@@ -1,0 +1,20 @@
+/* delete-confirmation.component.css */
+.mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+  }
+  
+  .mat-dialog-actions button {
+    margin-left: 8px;
+  }
+  
+  .delete-button {
+    background-color: #dc3545; /* Red color */
+    color: white;
+  }
+  
+  .confirm-button {
+    background-color: #28a745; /* Green color */
+    color: white;
+  }
+  

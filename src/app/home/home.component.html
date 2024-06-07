@@ -1,0 +1,63 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="red" type="ball-fussion">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+
+<div class="feed" *ngFor="let post of posts">
+  <div class="profile-header">
+    <mat-icon>person_pin</mat-icon>
+    <p><strong>{{ post.user_id?.userName || 'Unknown User' }}</strong></p>
+    <div class="time">({{ post.createdAt | relativeTime }})</div>
+  </div>
+  <div class="feed-content">
+    <p>{{ post.content }}</p>
+  </div>
+  <img class="feed-image" [src]="post.imageUrl" alt="Feed Image">
+  <button class="comments" mat-button (click)="toggleComments(post)">
+    {{ post.showComments ? 'Hide Comments' : 'View Comments' }}
+  </button>
+
+  <div class="feed-actions">
+    <div>
+      <button mat-icon-button (click)="toggleLike(post)">
+        <mat-icon>{{ post.liked ? 'favorite' : 'favorite_border' }}</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toggleComments(post)">
+        <mat-icon>comment</mat-icon>
+      </button>
+      <button mat-icon-button (click)="repost(post)">
+        <mat-icon>repeat</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>share</mat-icon>
+      </button>
+    </div>
+    <b>{{ post.likes_count }} likes</b>
+  </div>
+
+  <div class="comments-section" *ngIf="post.showComments">
+    <div class="comment" *ngFor="let comment of post.comments">
+      <p><mat-icon>person_pin</mat-icon><b>{{ comment.userName }}:</b> {{ comment.content }}</p>
+    </div>
+    <div class="add-comment">
+      <input type="text" placeholder="Add a comment..." [(ngModel)]="newComment">
+      <button mat-button (click)="addComment(post)">Post</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" #fileInput (change)="onFileSelected($event)" hidden>
+<button mat-fab class="add-post-button" (click)="openAddPostModal()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<div class="modal" *ngIf="showAddPostModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeAddPostModal()">&times;</span>
+    <h2>Add New Post</h2>
+    <input type="file" (change)="onFileSelected($event)">
+    <input type="text" placeholder="Caption" [(ngModel)]="newPostCaption">
+    <button mat-button (click)="addPost()">Post</button>
+  </div>
+</div>
+

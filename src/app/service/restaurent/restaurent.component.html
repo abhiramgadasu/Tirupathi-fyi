@@ -1,0 +1,101 @@
+<div class="row"*ngIf="showevents">
+    <div class="col-md-6 offset-md-3">
+        <h2>Create Restaurant</h2>
+        <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="restaurantName">Restaurant Name *</label>
+                <input type="text" id="restaurantName" formControlName="restaurant_name" class="form-control" appName required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location *</label>
+                <input type="text" id="location" formControlName="location" class="form-control" appAddress required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number *</label>
+                <input type="tel" id="phoneNumber" formControlName="phone_number" class="form-control" appPhone required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" class="form-control" appEmail>
+            </div>
+            <div class="form-group">
+                <label for="website">Website</label>
+                <input type="url" id="website" formControlName="website" class="form-control" appAddress>
+            </div>
+            <div class="form-group">
+                <label for="openingHours">Opening Hours *</label>
+                <input type="text" id="openingHours" formControlName="opening_hours" class="form-control" required appAddress>
+            </div>
+            <div class="form-group">
+                <label for="cuisineType">Cuisine Type *</label>
+                <input type="text" id="cuisineType" formControlName="cuisine_type" class="form-control" required appName>
+            </div>
+            <div class="form-group">
+                <label for="priceRange">Price Range *</label>
+                <input type="text" id="priceRange" formControlName="price_range" class="form-control" required appAmount>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="number" id="rating" formControlName="rating" class="form-control" appAmount>
+            </div>
+            <div class="form-group">
+                <label for="features">Features</label>
+                <input type="text" id="features" formControlName="features" class="form-control" appAddress>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary btn-block">Cancel</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-block create">Create</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<button class="btn btn-sm btn-primary" type="button" (click)="addEvents()">addRestaurent</button>
+
+<div class="row w-100">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="companyName"> companyName</th>
+            <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="eventName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="eventName"> eventName </th>
+            <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="language">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="language"> language </th>
+            <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="location"> location </th>
+            <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+                <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+</div>

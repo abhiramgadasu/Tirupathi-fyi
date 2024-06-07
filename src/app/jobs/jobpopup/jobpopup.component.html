@@ -1,0 +1,105 @@
+<div class="row p-3 w-100">
+  <div class="row d-flex justify-content-center">
+    <h3>Edit details</h3>
+    <mat-icon class="position-absolute top-0 end-0 pe-4" [mat-dialog-close]="true">close</mat-icon>
+  </div>
+
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+  <div class="row p-2 overflow-y-auto">
+    <div class="col-6">
+      <div class="mb-3">
+        <label for="companyName" class="form-label">Company Name *</label>
+        <input type="text" class="form-control" id="companyName" formControlName="companyName">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="placeImage" class="form-label">Place Image *</label>
+        <input type="text" class="form-control" id="placeImage" formControlName="placeImage">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" formControlName="description"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="role" class="form-label">Role *</label>
+        <input type="text" class="form-control" id="role" formControlName="role">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location *</label>
+        <input type="text" class="form-control" id="location" formControlName="location">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="experience" class="form-label">Experience *</label>
+        <input type="text" class="form-control" id="experience" formControlName="experience">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="qualification" class="form-label">Qualification *</label>
+        <input type="text" class="form-control" id="qualification" formControlName="qualification">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="responsibilities" class="form-label">Responsibilities *</label>
+        <textarea class="form-control" id="responsibilities" formControlName="responsibilities"></textarea>
+
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="mb-3">
+        <label for="industryType" class="form-label">Industry Type</label>
+        <input type="text" class="form-control" id="industryType" formControlName="industryType">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="budget" class="form-label">Budget</label>
+        <input type="number" class="form-control" id="budget" formControlName="budget">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="hiringManager" class="form-label">Hiring Manager</label>
+        <input type="text" class="form-control" id="hiringManager" formControlName="hiringManager">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="openings" class="form-label">Openings</label>
+        <input type="number" class="form-control" id="openings" formControlName="openings">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="totalEmployees" class="form-label">Total Employees</label>
+        <input type="number" class="form-control" id="totalEmployees" formControlName="totalEmployees">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="expireDate" class="form-label">Expire Date *</label>
+        <input type="date" class="form-control" id="expireDate" formControlName="expireDate">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="jobType" class="form-label">Job Type *</label>
+        <input type="text" class="form-control" id="jobType" formControlName="jobType">
+
+      </div>
+    </div>
+  </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

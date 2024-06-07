@@ -1,0 +1,118 @@
+/* General form styling */
+#pageTitle {
+    
+    margin-bottom: 20px;
+}
+
+#form.card {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 4px;
+}
+
+.text-danger {
+    font-size: 0.875em;
+    margin-top: 5px;
+}
+
+/* Button styling */
+
+
+.create {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+}
+
+.create:hover {
+    background-color: #0056b3;
+}
+
+/* Grid adjustments */
+.row {
+    margin-bottom: 20px;
+}
+
+.col-md-6 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.col-md-6 .form-control {
+    margin-bottom: 0;
+}
+
+/* Specific adjustments for the last row */
+.row:last-child {
+    margin-top: 30px;
+}
+
+.col-md-1 .btn-block.create {
+    margin-left: auto;
+    margin-right: 0;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.col-5 {
+    flex: 0 0 auto;
+    width: 41.66666667%;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 767px) {
+    .col-md-6 {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .col-md-1, .col-5 {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .col-md-1 .btn-block.create {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .row {
+        margin-bottom: 10px;
+    }
+}
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../assets/up-arrow.png');
+    background-position: right 10px center;
+    background-size: 12px;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+}
+
+.col-md-6.open .custom-select {
+    background-image: url('../../assets/down-arrow.png');
+}
+.form-group.open .custom-select {
+    background-image: url('../../assets/down-arrow.png');
+}

@@ -1,0 +1,101 @@
+<div class="row" *ngIf="showevents">
+    <div class="col-md-6 offset-md-3">
+        <h2>Create Temple</h2>
+        <form [formGroup]="templeForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="templeName">Temple Name *</label>
+                <input type="text" id="templeName" formControlName="temple_name" class="form-control" appName required>
+                <div *ngIf="templeForm.get('temple_name')?.invalid && templeForm.get('temple_name')?.touched" class="text-danger">
+                    Please enter the temple name.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" formControlName="description" appAddress class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="location">Location *</label>
+                <input type="text" id="location" formControlName="location" class="form-control" appName required>
+                <div *ngIf="templeForm.get('location')?.invalid && templeForm.get('location')?.touched" class="text-danger">
+                    Please enter the temple location.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="number" id="rating" formControlName="rating" appPincode class="form-control">
+                <div *ngIf="templeForm.get('rating')?.invalid && templeForm.get('rating')?.touched" class="text-danger">
+                    Please enter a valid rating.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="templeWebsite">Temple Website</label>
+                <input type="url" class="form-control" name="templeWebsite" appEmail placeholder="Enter temple website" formControlName="templeWebsite">
+                <div *ngIf="templeForm.get('templeWebsite')?.invalid && templeForm.get('templeWebsite')?.touched" class="text-danger">
+                    Please enter a valid URL for the temple website.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content">Choose Content</label>
+                <input type="file" id="content" name="content" (change)="handleContentSelection($event)" formControlName="content">
+                <div *ngIf="templeForm.get('content')?.invalid && templeForm.get('content')?.touched" class="text-danger">
+                    Please select a file.
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary btn-block">Cancel</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-block create">Create</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<button class="btn btn-sm btn-primary" type="button" (click)="addEvents()">addEvents</button>
+
+<div class="row w-100">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="companyName"> companyName</th>
+            <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="eventName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="eventName"> eventName </th>
+            <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="language">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="language"> language </th>
+            <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="location"> location </th>
+            <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon style="color: blue; cursor: pointer;" (click)="editdata(element)">edit</mat-icon>
+                <mat-icon style="color: brown; cursor: pointer;" (click)="deleteEvent(element)">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+</div>
